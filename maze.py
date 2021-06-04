@@ -15,8 +15,7 @@ pygame.init()
 SCREEN = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Maze Generator and Solver")
 CLOCK = pygame.time.Clock()
-FPS = 10
-
+FPS = 30
 
 class Cell(object):
     def __init__(self, x, y):
@@ -68,10 +67,8 @@ def reset():
         maze.append(row)
 reset()
 
-
 def in_bounds(x, y):
     return 0 <= x < COLUMNS and 0 <= y < ROWS
-
 
 def find_next_cell(x, y):
     neighbors = []
@@ -103,7 +100,6 @@ def find_next_cell(x, y):
         else:
             return -1, -1
 
-
 def remove_wall(x1, y1, x2, y2):
     xd = maze[x1][y1].x - maze[x2][y2].x
     if xd == 1:
@@ -119,7 +115,6 @@ def remove_wall(x1, y1, x2, y2):
     elif xy == -1:
         maze[x1][y1].walls[2] = False
         maze[x2][y2].walls[0] = False
-
 
 def simulate():
     global current_x, current_y, state
@@ -155,7 +150,6 @@ def simulate():
             maze[current_x][current_y].on_path = False
             current_x = previous[0]
             current_y = previous[1]
-
 
 def draw_screen():
     SCREEN.fill(BLACK)
